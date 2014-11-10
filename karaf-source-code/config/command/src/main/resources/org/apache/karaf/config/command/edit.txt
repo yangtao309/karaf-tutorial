@@ -1,0 +1,13 @@
+The edit command can be used to create or edit a configuration in three ways.
+
+Edit or create a config by pid:
+  > config:edit org.apache.karaf.sample.pid
+The command above will also create a file etc/org.apache.karaf.sample.pid which corresponds to a configuration object with pid org.apache.karaf.sample.pid.
+  
+Create a factory config by factory pid:
+  > config:edit --factory myfactorypid
+In this case the config is created with a pid like myfactorypid.<generated id>. This config is not written to a file.
+
+Edit a config specified by an ldap query
+  > config:edit '(myattribute=myvalue)'
+This executes an ldap query like in config:list. If the result is exactly one config then it is edited.

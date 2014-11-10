@@ -1,0 +1,19 @@
+h1. Synopsis
+
+${project.name}
+
+${project.description}
+
+Maven URL
+[mvn:${pct.groupId}/${project.artifactId}/${project.version}]
+
+h1. Description
+
+The Karaf KAR is an archive (similar to JAR) containing a set of bundles jar files and features descriptors.
+
+Karaf deployer explores the KAR archive and deploy the features descriptors and bundles.
+
+h1. See also
+
+* Deployer - section of Karaf User Guide
+* KAR - section of the Karaf Developer Guide

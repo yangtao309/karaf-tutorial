@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!--
+
+        Licensed to the Apache Software Foundation (ASF) under one or more
+        contributor license agreements.  See the NOTICE file distributed with
+        this work for additional information regarding copyright ownership.
+        The ASF licenses this file to You under the Apache License, Version 2.0
+        (the "License"); you may not use this file except in compliance with
+        the License.  You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+    -->
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.apache.karaf.shell</groupId>
+        <artifactId>shell</artifactId>
+        <version>3.0.2</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>org.apache.karaf.shell.console</artifactId>
+    <packaging>bundle</packaging>
+    <name>Apache Karaf :: Shell :: Console</name>
+    <description>This bundle provides OSGi shell integration and console support.</description>
+
+    <properties>
+        <appendedResourcesDirectory>${basedir}/../../etc/appended-resources</appendedResourcesDirectory>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jline</groupId>
+            <artifactId>jline</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.karaf.jaas</groupId>
+            <artifactId>org.apache.karaf.jaas.modules</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.karaf.jaas</groupId>
+            <artifactId>org.apache.karaf.jaas.boot</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.aries.blueprint</groupId>
+            <artifactId>org.apache.aries.blueprint.api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.blueprint</groupId>
+            <artifactId>org.apache.aries.blueprint.core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.gogo.runtime</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sshd</groupId>
+            <artifactId>sshd-core</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/../../client/src/main/key</directory>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.info</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/filtered-resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>Main</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Import-Package>
+                            !org.apache.felix.gogo.*,
+                            !org.apache.felix.service.*,
+                            org.osgi.service.event;resolution:=optional,
+                            org.apache.karaf.branding;resolution:=optional,
+                            org.apache.sshd.agent*;resolution:=optional,
+                            *
+                        </Import-Package>
+                        <Export-Package>
+                        	org.apache.karaf.shell.commands;version=${project.version},
+                            org.apache.karaf.shell.commands;version=2.3.0,
+                            org.apache.karaf.shell.commands.basic;version=${project.version},
+                            org.apache.karaf.shell.commands.basic;version=2.3.0,
+                            org.apache.karaf.shell.commands.converter;version=${project.version},
+                            org.apache.karaf.shell.commands.converter;version=2.3.0,
+                            org.apache.karaf.shell.commands.meta;version=${project.version},
+                            org.apache.karaf.shell.commands.meta;version=2.3.0,
+                        	org.apache.karaf.shell.console;version=${project.version},
+                            org.apache.karaf.shell.console;version=2.3.0,
+                        	org.apache.karaf.shell.console.commands;version=${project.version},
+                            org.apache.karaf.shell.console.commands;version=2.3.0,
+                        	org.apache.karaf.shell.console.completer;version=${project.version},
+                            org.apache.karaf.shell.console.completer;version=2.3.0,
+                        	org.apache.karaf.shell.console.jline;version=${project.version},
+                            org.apache.karaf.shell.console.jline;version=2.3.0,
+                        	org.apache.karaf.shell.util;version=${project.version},
+                            org.apache.karaf.shell.util;version=2.3.0,
+                            org.apache.felix.gogo.api;version=${felix.gogo.version},
+                            org.apache.felix.gogo.commands*;version=${felix.gogo.version},
+                            org.apache.felix.service.command;version=${felix.gogo.version},
+                            org.apache.felix.service.threadio;version=${felix.gogo.version}
+                        </Export-Package>
+                        <Private-Package>
+                        	org.apache.karaf.shell.console.impl*,
+                            org.apache.karaf.shell.security.impl*,
+                            
+                            <!-- We need to embed gogo runtime to be able to create 
+                                 SecuredCommandProcessorImpl which needs CommandProcessorImpl -->
+                            org.apache.felix.gogo.runtime.*
+                        </Private-Package>
+                        <Main-Class>
+                            org.apache.karaf.shell.console.impl.Main
+                        </Main-Class>
+                        <Export-Service>
+                            org.apache.felix.service.threadio.ThreadIO,
+                            org.apache.felix.service.command.CommandProcessor,
+                            org.apache.felix.service.command.Converter
+                        </Export-Service>
+                    </instructions>
+                    <unpackBundle>true</unpackBundle>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

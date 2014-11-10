@@ -1,0 +1,29 @@
+h1. Synopsis
+
+${project.name}
+
+${project.description}
+
+Maven URL:
+[mvn:${project.groupId}/${project.artifactId}/${project.version}]
+
+h1. Description
+
+This bundle provides Karaf shell commands to manipulate the JAAS security framework.
+
+The following commands are available:
+* jaas:cancel - Cancel the modification of a JAAS realm
+* jaas:pending - Lists the modification on the active realm/module
+* jaas:list - Lists the modification on the active realm/module
+* jaas:userlist - Lists the users of the active realm/module
+* jaas:manage - Manage user and roles of a Jaas Realm
+* jaas:roleadd - Add a role to a user
+* jaas:roledel - Delete a role from a user
+* jaas:update - Update JAAS realm
+* jaas:useradd - Add a user
+* jaas:userdel - Delete a user
+
+h1. See also
+
+* Security - section of the Karaf User Guide
+* Security Framework - section of the Karaf Developer Guide

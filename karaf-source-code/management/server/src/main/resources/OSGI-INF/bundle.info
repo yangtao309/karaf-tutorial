@@ -1,0 +1,18 @@
+h1. Synopsis
+
+${project.name}
+
+${project.description}
+
+Maven URL:
+[mvn:${project.groupId}/${project.artifactId}/${project.version}]
+
+h1. Description
+
+This bundle starts JMX required resources such as MBean server and RMI registry.
+
+It allows end users to manage Karaf using any JMX client such as JConsole.
+
+h1. See also
+
+* Management - section of the Karaf User Guide.

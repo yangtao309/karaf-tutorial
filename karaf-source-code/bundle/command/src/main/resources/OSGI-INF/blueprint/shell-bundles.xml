@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <reference id="bundleService" interface="org.apache.karaf.bundle.core.BundleService" />
+    <reference id="bundleWatcher" interface="org.apache.karaf.bundle.core.BundleWatcher"/>
+
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+        <command>
+            <action class="org.apache.karaf.bundle.command.StartLevel">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Classes">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.FindClass">
+                <property name="bundleContext" ref="blueprintBundleContext" />
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Headers">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Info">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Diag">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Install">
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.ListBundles">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.ListBundleServices">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Refresh">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Update">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Resolve">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Restart">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Start">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Stop">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Uninstall">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Capabilities">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Requirements">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.ShowBundleTree">
+                <property name="bundleService" ref="bundleService"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.DynamicImport">
+                <property name="bundleService" ref="bundleService"/>
+                <property name="bundleContext" ref="blueprintBundleContext" />
+            </action> 
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.Id">
+                <property name="bundleService" ref="bundleService"/>
+                <property name="bundleContext" ref="blueprintBundleContext" />
+            </action> 
+        </command>        
+        <command>
+            <action class="org.apache.karaf.bundle.command.Watch" >
+                <property name="bundleWatcher" ref="bundleWatcher"/>
+            </action>
+        </command>
+        <command>
+            <action class="org.apache.karaf.bundle.command.LoadTest" >
+            </action>
+        </command>
+    </command-bundle>
+    
+</blueprint>

@@ -1,0 +1,239 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.karaf.itests.features;
+
+import org.apache.karaf.itests.KarafTestSupport;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.ops4j.pax.exam.junit.PaxExam;
+import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
+import org.ops4j.pax.exam.spi.reactors.PerClass;
+
+@RunWith(PaxExam.class)
+@ExamReactorStrategy(PerClass.class)
+public class SpringFeaturesTest extends KarafTestSupport {
+
+    // Spring DM features
+
+    @Test
+    public void installSpringDmFeature() throws Exception {
+        installAssertAndUninstallFeature("spring-dm");
+    }
+
+    @Test
+    public void installSpringDmWebFeature() throws Exception {
+        installAssertAndUninstallFeature("spring-dm-web");
+    }
+
+    // Spring 3.1.x features test
+
+    @Test
+    public void installSpring31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringAspects31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-aspects", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringInstrument31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-instrument", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringJdbc31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-jdbc", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringJms31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-jms", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringStruts31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-struts", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringTest31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-test", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringOrm31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-orm", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringOxm31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-oxm", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringTx31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-tx", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringWeb31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-web", System.getProperty("spring31.version"));
+    }
+
+    @Test
+    public void installSpringWebPortlet31Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-web-portlet", System.getProperty("spring31.version"));
+    }
+    
+    // Spring 3.2.x features test
+
+    @Test
+    public void installSpring32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringAspects32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-aspects", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringInstrument32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-instrument", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringJdbc32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-jdbc", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringJms32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-jms", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringStruts32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-struts", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringTest32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-test", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringOrm32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-orm", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringOxm32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-oxm", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringTx32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-tx", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringWeb32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-web", System.getProperty("spring32.version"));
+    }
+
+    @Test
+    public void installSpringWebPortlet32Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-web-portlet", System.getProperty("spring32.version"));
+    }    
+
+    // Spring 4.0.x features test
+
+    @Test
+    public void installSpring40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringAspects40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-aspects", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringInstrument40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-instrument", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringJdbc40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-jdbc", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringJms40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-jms", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringTest40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-test", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringOrm40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-orm", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringOxm40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-oxm", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringTx40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-tx", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringWeb40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-web", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringWebPortlet40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-web-portlet", System.getProperty("spring40.version"));
+    }
+
+    @Test
+    public void installSpringWebSocket40Feature() throws Exception {
+        installAssertAndUninstallFeature("spring-websocket", System.getProperty("spring40.version"));
+    }
+
+    // Spring security
+
+    @Test
+    public void installSpringSecurityFeature() throws Exception {
+        installAssertAndUninstallFeature("spring-security");
+    }
+
+    // Gemini Blueprint
+
+    @Test
+    public void installGeminiBlueprintFeature() throws Exception {
+        installAssertAndUninstallFeature("gemini-blueprint");
+    }
+
+}

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+
+      Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+-->
+<features name="standard-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.1 http://karaf.apache.org/xmlns/features/v1.2.1">
+
+	<repository>mvn:org.ops4j.pax.web/pax-web-features/${pax.web.version}/xml/features</repository>
+
+    <feature version="${project.version}" description="OSGi Security for Karaf" name="framework-security">
+        <bundle start="false" start-level="1">mvn:org.apache.felix/org.apache.felix.framework.security/${felix.framework.security.version}</bundle>
+    </feature>
+
+    <feature name="standard" description="Karaf standard feature" version="${project.version}">
+        <bundle start-level="30">mvn:org.apache.karaf.shell/org.apache.karaf.shell.console/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.features/org.apache.karaf.features.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.features/org.apache.karaf.features.command/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.instance/org.apache.karaf.instance.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.instance/org.apache.karaf.instance.command/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.modules/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.config/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.command/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.diagnostic/org.apache.karaf.diagnostic.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.diagnostic/org.apache.karaf.diagnostic.command/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.log/org.apache.karaf.log.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.log/org.apache.karaf.log.command/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.service/org.apache.karaf.service.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.service/org.apache.karaf.service.command/${project.version}</bundle>
+        <conditional>
+            <condition>webconsole</condition>
+            <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.instance/${project.version}</bundle>
+            <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.features/${project.version}</bundle>
+            <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.gogo/${project.version}</bundle>
+            <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.http/${project.version}</bundle>
+        </conditional>
+    </feature>
+
+    <feature name="aries-annotation" description="Aries Annotations" version="${project.version}">
+        <bundle dependency="true" start-level="20">mvn:org.apache.commons/commons-jexl/${commons-jexl.version}</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.ow2.asm/asm-all/${asm.version}</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.apache.xbean/xbean-bundleutils/${xbean.version}</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.apache.xbean/xbean-asm5-shaded/${xbean.version}</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.apache.xbean/xbean-reflect/${xbean.version}</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.apache.xbean/xbean-finder-shaded/${xbean.version}</bundle>
+        <bundle start-level="20">mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.annotation.api/${aries.blueprint.annotation.api.version}</bundle>
+        <bundle start-level="20">mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.annotation.impl/${aries.blueprint.annotation.version}</bundle>
+        <bundle start-level="20">mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.jexl.evaluator/${aries.blueprint.jexl.evaluator.version}</bundle>
+    </feature>
+
+    <!-- NB: this file is not the one really used. This file is used by the karaf-maven-plugin to define the start-level of bundles in the generated feature.xml -->
+
+    <feature name="wrapper" description="Provide OS integration" version="${project.version}">
+        <bundle start-level="30">mvn:org.apache.karaf.wrapper/org.apache.karaf.wrapper.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.wrapper/org.apache.karaf.wrapper.command/${project.version}</bundle>
+    </feature>
+    <feature name="service-wrapper" description="Provide OS integration (alias to wrapper feature)" version="${project.version}">
+        <feature version="${project.version}">wrapper</feature>
+    </feature>
+
+    <feature name="obr" description="Provide OSGi Bundle Repository (OBR) support" version="${project.version}">
+        <bundle start-level="30">mvn:org.apache.felix/org.osgi.service.obr/${felix.obr.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.bundlerepository/${felix.bundlerepository.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.obr/org.apache.karaf.obr.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.obr/org.apache.karaf.obr.command/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.url/pax-url-obr/${pax.url.version}/jar/uber</bundle>
+        <bundle start-level="31">mvn:org.apache.karaf.features/org.apache.karaf.features.obr/${project.version}</bundle>
+    </feature>
+
+    <feature name="config" description="Provide OSGi ConfigAdmin support" version="${project.version}">
+        <bundle start-level="30" start="true">mvn:org.apache.karaf.config/org.apache.karaf.config.core/${project.version}</bundle>
+        <bundle start-level="30" start="true">mvn:org.apache.karaf.config/org.apache.karaf.config.command/${project.version}</bundle>
+    </feature>
+
+    <feature name="region" description="Provide Region Support" version="${project.version}">
+        <bundle start-level="30">mvn:org.eclipse.equinox/region/${equinox.region.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.region/org.apache.karaf.region.persist/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.region/org.apache.karaf.region.command/${project.version}</bundle>
+    </feature>
+
+    <feature name="package" version="${project.version}" resolver="(obr)" description="Package commands and mbeans">
+        <bundle start-level="30">mvn:org.apache.karaf.package/org.apache.karaf.package.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.package/org.apache.karaf.package.command/${project.version}</bundle>
+    </feature>
+
+    <feature name="http" version="${project.version}" resolver="(obr)" description="Implementation of the OSGI HTTP Service">
+        <feature version="[${pax.web.version},5)">pax-http</feature>
+        <bundle start-level="30">mvn:org.apache.karaf.http/org.apache.karaf.http.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.http/org.apache.karaf.http.command/${project.version}</bundle>
+    </feature>
+
+    <feature name="http-whiteboard" description="Provide HTTP Whiteboard pattern support" version="${project.version}" resolver="(obr)">
+    	<feature>http</feature>
+        <feature version="[${pax.web.version},5)">pax-http-whiteboard</feature>
+    </feature>
+
+    <feature name="war" description="Turn Karaf as a full WebContainer" version="${project.version}" resolver="(obr)">
+        <feature>http</feature>
+        <feature version="[${pax.web.version},5)">pax-war</feature>
+        <bundle start-level="30">mvn:org.apache.karaf.web/org.apache.karaf.web.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.web/org.apache.karaf.web.command/${project.version}</bundle>
+    </feature>
+    
+    <feature name="jetty" version="8.1.9.v20130131" resolver="(obr)">
+    	<feature>pax-jetty</feature>
+    </feature>
+
+    <feature name="kar" description="Provide KAR (KARaf archive) support" version="${project.version}" resolver="(obr)">
+        <bundle start-level="30">mvn:org.apache.karaf.kar/org.apache.karaf.kar.core/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.kar/org.apache.karaf.kar.command/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.deployer/org.apache.karaf.deployer.kar/${project.version}</bundle>
+    </feature>
+
+    <feature name="webconsole" description="Base support of the Karaf WebConsole" version="${project.version}" resolver="(obr)">
+        <config name="org.apache.karaf.webconsole">
+            realm=karaf
+        </config>
+        <feature>http</feature>
+        <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.metatype/${felix.metatype.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.branding/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.console/${project.version}</bundle>
+        <conditional>
+            <condition>eventadmin</condition>
+            <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.event/${felix.eventadmin.webconsole.plugin.version}</bundle>
+        </conditional>
+        <conditional>
+            <condition>scr</condition>
+            <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.ds/${felix.scr.webconsole.plugin.version}</bundle>
+        </conditional>
+    </feature>
+
+    <feature name="ssh" description="Provide a SSHd server on Karaf" version="${project.version}">
+        <config name="org.apache.karaf.shell">
+            sshPort=8101
+            sshHost=0.0.0.0
+            sshRealm=karaf
+            hostKey=${karaf.etc}/host.key
+        </config>
+        <bundle start="true" start-level="30">mvn:org.apache.mina/mina-core/${mina.version}</bundle>
+        <bundle start="true" start-level="30">mvn:org.apache.sshd/sshd-core/${sshd.version}</bundle>
+        <bundle start="true" start-level="30">mvn:org.apache.karaf.shell/org.apache.karaf.shell.ssh/${project.version}</bundle>
+    </feature>
+
+    <feature name="management" description="Provide a JMX MBeanServer and a set of MBeans in Karaf" version="${project.version}">
+        <bundle start-level="30">mvn:org.apache.karaf.management/org.apache.karaf.management.server/${project.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jmx/org.apache.aries.jmx.api/${aries.jmx.api.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jmx/org.apache.aries.jmx.core/${aries.jmx.core.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jmx/org.apache.aries.jmx.blueprint.api/${aries.jmx.blueprint.api.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jmx/org.apache.aries.jmx.blueprint.core/${aries.jmx.blueprint.core.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jmx/org.apache.aries.jmx.whiteboard/${aries.jmx.whiteboard.version}</bundle>
+    </feature>
+
+    <feature name="scheduler" description="Provide a scheduler service in Karaf to fire events" version="${project.version}" resolver="(obr)">
+        <bundle start-level="30">mvn:org.apache.karaf.scheduler/org.apache.karaf.scheduler.core/${project.version}</bundle>
+    </feature>
+
+    <feature name="eventadmin" description="OSGi Event Admin service specification for event-based communication" version="${project.version}" resolver="(obr)">
+        <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.eventadmin/${felix.eventadmin.version}</bundle>
+        <conditional>
+            <condition>webconsole</condition>
+            <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.event/${felix.eventadmin.webconsole.plugin.version}</bundle>
+        </conditional>
+    </feature>
+
+    <feature name="jasypt-encryption" description="Advanced encryption support for Karaf security" version="${project.version}" resolver="(obr)">
+        <bundle dependency="true" start-level="30">mvn:commons-codec/commons-codec/${commons-codec.version}</bundle>
+        <bundle dependency="true" start-level="30">mvn:commons-lang/commons-lang/${commons-lang.version}</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jasypt/${jasypt.bundle.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.jasypt/${project.version}</bundle>
+        <conditional>
+            <condition>spring</condition>
+            <bundle dependency="true" start-level="30">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jasypt-spring31/${jasypt.bundle.version}</bundle>
+        </conditional>
+    </feature>
+
+    <feature name="scr" description="Declarative Service support" version="${project.version}" resolver="(obr)">
+        <bundle dependency="true" start-level="30">mvn:org.apache.felix/org.apache.felix.metatype/${felix.metatype.version}</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.felix/org.apache.felix.scr/${felix.scr.version}</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.scr/org.apache.karaf.scr.command/${project.version}</bundle>
+        <conditional>
+            <condition>management</condition>
+            <bundle start-level="30">mvn:org.apache.karaf.scr/org.apache.karaf.scr.management/${project.version}</bundle>
+        </conditional>
+        <conditional>
+            <condition>webconsole</condition>
+            <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.ds/${felix.scr.webconsole.plugin.version}</bundle>
+        </conditional>
+    </feature>
+
+    <feature name="blueprint-web" description="Provides an OSGI-aware Servlet ContextListener for bootstrapping
+        blueprint inside web-bundle containers" version="${project.version}" resolver="(obr)">
+        <feature>war</feature>
+        <bundle>mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.webosgi/${aries.blueprint.web.version}</bundle>
+    </feature>
+
+</features>
